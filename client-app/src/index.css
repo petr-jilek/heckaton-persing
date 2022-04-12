@@ -1,0 +1,18 @@
+@import "App";
+
+* {
+  box-sizing: border-box;
+  font-family: "Nunito";
+}
+
+body {
+  margin: 0;
+  font-family: "Nunito";
+  font-size: 20px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: "Nunito";
+}
