@@ -35,7 +35,7 @@ namespace API.Controllers
         [HttpGet("try")]
         public IActionResult Try()
         {
-            throw new AuthException("Error zpráva");
+            throw new AuthException("Error message");
         }
     }
 }
