@@ -17,7 +17,6 @@ export default function HomePage() {
 
     return (
         <>
-            {items.map(x => <p>{x.nazev}</p>)}
 
             {/*<p>HomePage</p>
             <Button variant="primary" onClick={get}>Get</Button>
@@ -39,8 +38,7 @@ export default function HomePage() {
             />*/}
             <div></div>
             <select id="storage_name" name="storage_name">
-                <option value="Storage1">Storage1</option>
-                <option value="Storage2">Storage2</option>
+                {items.map(x => <option key={x.id} value={x.nazev}>{x.nazev}</option>)}
             </select>
             <div>
                 <Button onclick="window.location.href='';">
