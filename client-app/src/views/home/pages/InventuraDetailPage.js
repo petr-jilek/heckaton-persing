@@ -80,6 +80,16 @@ export default function InventuraDetailPage() {
 
         if (eItems.length > 0) {
             if (eanItems.filter(x => x.cenik === eItems[0].cenik).length > 0) {
+                var data = eanItems;
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].cenik === eItems[0].cenik) {
+                        data[i].mycount++;
+                        setEanItems(data)
+                        toast.success("Předmět přidán")
+                        return
+                    }
+                }
+
                 toast.error("EAN již nahrán")
             }
             else {
