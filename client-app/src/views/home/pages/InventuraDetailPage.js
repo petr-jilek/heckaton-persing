@@ -24,6 +24,13 @@ export default function InventuraDetailPage() {
         get()
     }, []);
 
+    const handleKeyDown = async (event) => {
+        if (event.key === 'Enter') {
+            await sendEan()
+        }
+    }
+
+
     const get = async () => {
         var data = await axios.get(`firma1/inventura/${id}`);
         setItem(data.winstrom.inventura[0])
@@ -219,7 +226,7 @@ export default function InventuraDetailPage() {
             <h2>Načíst položky</h2>
             <Form.Group className="mb-3">
                 <Form.Label>EAN</Form.Label>
-                <Form.Control onChange={(e) => { setEan(e.target.value) }} />
+                <Form.Control onChange={(e) => { setEan(e.target.value) }} onKeyDown={handleKeyDown} />
             </Form.Group>
 
             <Button onClick={sendEan} style={{ marginBottom: "1rem" }} >Přidat</Button>
