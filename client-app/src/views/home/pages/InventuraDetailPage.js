@@ -116,15 +116,15 @@ export default function InventuraDetailPage() {
     return (
         <>
             <h1>Detail Inventury</h1>
-            <h3>Id</h3>
+            <h3>ID Inventury</h3>
             <p>{item.id}</p>
             <h3>Typ Inventury</h3>
             <p>{item.typInventury}</p>
-            <h3>Datum Zahajeni</h3>
+            <h3>Datum Zahájení</h3>
             <p>{item.datZahaj}</p>
-            <h3>stavK</h3>
+            <h3>Stav</h3>
             <p>{item.stavK}</p>
-            <h3>sklad</h3>
+            <h3>Sklad</h3>
             <p>{item.sklad}</p>
             <hr />
 
@@ -132,8 +132,8 @@ export default function InventuraDetailPage() {
             <Table striped bordered hover>
                 <thead>
                     <tr>
-                        <th>Nazev</th>
-                        <th>Pocet</th>
+                        <th>Název</th>
+                        <th>Počet</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -181,7 +181,7 @@ export default function InventuraDetailPage() {
             <Table striped bordered hover>
                 <thead>
                     <tr>
-                        <th>Id</th>
+                        <th>ID</th>
                         <th>Název</th>
                         <th>Počet</th>
                     </tr>

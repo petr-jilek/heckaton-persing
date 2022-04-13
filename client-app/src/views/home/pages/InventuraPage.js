@@ -21,7 +21,7 @@ export default function InventuraPage() {
             <Table striped bordered hover>
                 <thead>
                     <tr>
-                        <th>Nazev</th>
+                        <th>Název</th>
                     </tr>
                 </thead>
                 <tbody>

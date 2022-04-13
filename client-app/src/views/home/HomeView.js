@@ -7,10 +7,10 @@ export default function HomeView() {
         <>
             <Navbar bg="primary" variant="dark">
                 <Container>
-                    <Navbar.Brand as={Link} to="/">Home</Navbar.Brand>
+                    <Navbar.Brand as={Link} to="/">Domovní stránka</Navbar.Brand>
                     <Nav className="me-auto">
                         <Nav.Link as={Link} to="/inventura">Inventury</Nav.Link>
-                        <Nav.Link as={Link} to="/addinventura">Add Inventura</Nav.Link>
+                        <Nav.Link as={Link} to="/addinventura">Vytvořit Inventuru</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>

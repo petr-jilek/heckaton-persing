@@ -43,12 +43,12 @@ export default function AddInventuraPage() {
         <>
             <h1>Přidat inventuru</h1>
             <Form.Group className="mb-3">
-                <Form.Label>Nazev</Form.Label>
+                <Form.Label>Název inventury</Form.Label>
                 <Form.Control onChange={(e) => { setName(e.target.value); console.log(e.target.value) }} />
             </Form.Group>
 
 
-            <Form.Label htmlFor="inputfirm_name">Storage</Form.Label>
+            <Form.Label htmlFor="inputfirm_name">Název skladu</Form.Label>
 
             <div>
                 <select id="lang" onChange={(e) => { setStorage(e.target.value) }}>
@@ -57,7 +57,7 @@ export default function AddInventuraPage() {
             </div>
             <br />
 
-            <Button onClick={create}>Add</Button>
+            <Button onClick={create}>Vytvořit</Button>
         </>
     );
 }
