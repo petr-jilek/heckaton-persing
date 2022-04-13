@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button } from 'react-bootstrap'
+import { Button, Table } from 'react-bootstrap'
 import axios from 'axios'
 import { Link } from "react-router-dom";
 
@@ -18,13 +18,20 @@ export default function InventuraPage() {
     return (
         <>
             <h1>Inventury</h1>
-            <></>
-            <Button type="primary" onClick={get}>Get</Button>
-            {items.map(x => (
-                <div className='InvenuturaPage_items' key={x.id}>
-                    <Link to={`/inventura/${x.id}`}>{x.typInventury}</Link>
-                </div>
-            ))}
+            <Table striped bordered hover>
+                <thead>
+                    <tr>
+                        <th>Nazev</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {items.map(x =>
+                        <tr>
+                            <td><Link to={`/inventura/${x.id}`}>{x.typInventury}</Link></td>
+                        </tr >
+                    )}
+                </tbody>
+            </Table>
         </>
     );
 }

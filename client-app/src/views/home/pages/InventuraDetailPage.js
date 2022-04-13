@@ -26,7 +26,7 @@ export default function InventuraDetailPage() {
     const sendEan = async () => {
         console.log(ean)
 
-        var data = await axios.get(`https://inventura.flexibee.eu/v2/c/firma1/skladova-karta/%28sklad%20%3D%20%22code%3ASKLAD%22%20and%20ucetObdobi%20%3D%20%22code%3A2022%22%20and%20cenik%3D%22ean%3A${ean}%22%29?detail=summary&limit=10&offset=0`)
+        var data = await axios.get(`firma1/skladova-karta/%28sklad%20%3D%20%22code%3ASKLAD%22%20and%20ucetObdobi%20%3D%20%22code%3A2022%22%20and%20cenik%3D%22ean%3A${ean}%22%29?detail=custom%3Aid%2Csklad%2CdatZahaj%2Ccenik&limit=10&offset=0`)
 
         var eItems = data.winstrom["skladova-karta"]
 
@@ -93,10 +93,12 @@ export default function InventuraDetailPage() {
             </Form.Group>
 
             <Button onClick={sendEan}>Add</Button>
+            <br />
 
             <Table striped bordered hover>
                 <thead>
                     <tr>
+                        <th>Id</th>
                         <th>Nazev</th>
                         <th>Pocet</th>
                     </tr>
@@ -104,6 +106,7 @@ export default function InventuraDetailPage() {
                 <tbody>
                     {eanItems.map(x =>
                         <tr>
+                            <td>{x.id}</td>
                             <td>{x.cenik.split(":")[1]}</td>
                             <td><input onChange={(e) => { editCount(e.target.value, x.cenik) }} value={x.mycount} type="number" /></td>
                         </tr >)}
