@@ -145,7 +145,9 @@ export default function InventuraDetailPage() {
                         </tr >)}
                 </tbody>
             </Table>
-            <hr />
+
+            <br />
+            <br />
 
             <h2>Sečtené položky</h2>
             <Table striped bordered hover>
@@ -164,6 +166,9 @@ export default function InventuraDetailPage() {
                 </tbody>
             </Table>
             <hr />
+
+            <br />
+            <br />
 
             <h2>Načíst položky</h2>
             <Form.Group className="mb-3">
