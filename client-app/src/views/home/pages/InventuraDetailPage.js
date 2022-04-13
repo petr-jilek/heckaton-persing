@@ -40,11 +40,11 @@ export default function InventuraDetailPage() {
             else {
                 eItems[0]["mycount"] = 1
                 setEanItems([...eanItems, eItems[0]])
-                toast.success("Item added")
+                toast.success("předmět přidán")
             }
         }
         else {
-            toast.error("No item for this EAN")
+            toast.error("Žádný předmět pro tento EAN")
         }
     }
 
@@ -111,8 +111,8 @@ export default function InventuraDetailPage() {
             <Table striped bordered hover>
                 <thead>
                     <tr>
-                        <th>Nazev</th>
-                        <th>Pocet</th>
+                        <th>Název</th>
+                        <th>Počet</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -131,15 +131,15 @@ export default function InventuraDetailPage() {
                 <Form.Control onChange={(e) => { setEan(e.target.value) }} />
             </Form.Group>
 
-            <Button onClick={sendEan}>Add</Button>
+            <Button onClick={sendEan}>Přidat</Button>
             <br />
 
             <Table striped bordered hover>
                 <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Nazev</th>
-                        <th>Pocet</th>
+                        <th>Název</th>
+                        <th>Počet</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -153,7 +153,7 @@ export default function InventuraDetailPage() {
             </Table>
 
             <br />
-            <Button onClick={saveEanItems}>Ulozit</Button>
+            <Button onClick={saveEanItems}>Uložit</Button>
         </>
     );
 }
