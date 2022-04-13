@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Form, Table } from 'react-bootstrap'
 import axios from 'axios'
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 
 
@@ -18,6 +18,8 @@ export default function InventuraDetailPage() {
 
     const [souctovePolozky, setSouctovePolozky] = useState([])
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         get()
     }, []);
@@ -28,7 +30,6 @@ export default function InventuraDetailPage() {
 
         var addedEans = await axios.get(`https://inventura.flexibee.eu/v2/c/firma1/inventura-polozka/%28inventura%3D${data.winstrom.inventura[0].id}%29?detail=custom%3Aid%2Csklad%2CdatZahaj%2CmnozMjReal%2Ccenik&limit=100&offset=0`)
         setAddedEanItems(addedEans.winstrom["inventura-polozka"])
-
 
         var souctove = []
 
@@ -152,19 +153,25 @@ export default function InventuraDetailPage() {
         await get()
     }
 
+    const deleteI = async () => {
+        axios.delete(`firma1/inventura/${item.id}`)
+
+        navigate("/inventura")
+    }
+
     return (
         <div className='HomeViewPage_container_div'>
             <h1>Detail Inventury</h1>
-            <h3>ID Inventury</h3>
-            <p>{item.id}</p>
-            <h3>Typ Inventury</h3>
+            <h4>Název inventury</h4>
             <p>{item.typInventury}</p>
-            <h3>Datum Zahájení</h3>
+            <h4>Datum Zahájení</h4>
             <p>{item.datZahaj}</p>
-            <h3>Stav</h3>
+            <h4>Stav</h4>
             <p>{item.stavK}</p>
-            <h3>Sklad</h3>
+            <h4>Sklad</h4>
             <p>{item.sklad}</p>
+
+            <Button variant="danger" onClick={deleteI}>Odstranit inventuru</Button>
             <hr />
 
             <h2>Historie přidání</h2>

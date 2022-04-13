@@ -1,7 +1,7 @@
 import { Button, Form, DropdownButton, Dropdown } from 'react-bootstrap'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 
 export default function AddInventuraPage() {
@@ -9,6 +9,8 @@ export default function AddInventuraPage() {
 
     const [name, setName] = useState("")
     const [storage, setStorage] = useState(4)
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         get();
@@ -37,6 +39,8 @@ export default function AddInventuraPage() {
         await axios.post("firma1/inventura/", data);
 
         toast.success("Inventura přidána");
+
+        navigate('/inventura');
     };
 
     return (
@@ -44,7 +48,7 @@ export default function AddInventuraPage() {
             <h1>Přidat inventuru</h1>
             <Form.Group className="mb-3">
                 <Form.Label>Název inventury</Form.Label>
-                <Form.Control onChange={(e) => { setName(e.target.value); console.log(e.target.value) }} />
+                <Form.Control onChange={(e) => { setName(e.target.value) }} />
             </Form.Group>
 
 
