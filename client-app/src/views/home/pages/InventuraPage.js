@@ -16,7 +16,7 @@ export default function InventuraPage() {
     }
 
     return (
-        <>
+        <div className='HomeViewPage_container_div'>
             <h1>Inventury</h1>
             <Table striped bordered hover>
                 <thead>
@@ -32,6 +32,6 @@ export default function InventuraPage() {
                     )}
                 </tbody>
             </Table>
-        </>
+        </div>
     );
 }

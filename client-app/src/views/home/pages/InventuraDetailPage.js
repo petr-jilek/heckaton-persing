@@ -114,7 +114,7 @@ export default function InventuraDetailPage() {
     }
 
     return (
-        <>
+        <div className='HomeViewPage_container_div'>
             <h1>Detail Inventury</h1>
             <h3>ID Inventury</h3>
             <p>{item.id}</p>
@@ -198,6 +198,6 @@ export default function InventuraDetailPage() {
 
             <br />
             <Button onClick={saveEanItems}>Uložit</Button>
-        </>
+        </div>
     );
 }

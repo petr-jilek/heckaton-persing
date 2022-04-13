@@ -40,7 +40,7 @@ export default function AddInventuraPage() {
     };
 
     return (
-        <>
+        <div className='HomeViewPage_container_div'>
             <h1>Přidat inventuru</h1>
             <Form.Group className="mb-3">
                 <Form.Label>Název inventury</Form.Label>
@@ -58,6 +58,6 @@ export default function AddInventuraPage() {
             <br />
 
             <Button onClick={create}>Vytvořit</Button>
-        </>
+        </div>
     );
 }
