@@ -87,7 +87,28 @@ export default function InventuraDetailPage() {
             })
         )
 
-        await axios.post("https://inventura.flexibee.eu/v2/c/firma1/inventura-polozka", data)
+        await axios.post("firma1/inventura-polozka", data)
+
+        await get()
+    }
+
+    const deleteHistoryItem = async (id) => {
+        console.log(id)
+
+        var data = {
+            winstrom: {
+                "inventura-polozka": []
+            }
+        }
+
+        data.winstrom["inventura-polozka"].push({
+            id: id,
+            "@action": "delete",
+        });
+
+        await axios.post("firma1/inventura-polozka", data)
+
+        toast.success("Item deleted")
 
         await get()
     }
@@ -107,6 +128,25 @@ export default function InventuraDetailPage() {
             <p>{item.sklad}</p>
             <hr />
 
+            <h2>Historie přidání</h2>
+            <Table striped bordered hover>
+                <thead>
+                    <tr>
+                        <th>Nazev</th>
+                        <th>Pocet</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {addedEanItems.map(x =>
+                        <tr key={x.id}>
+                            <td>{x.cenik.split(":")[1]}</td>
+                            <td>{x.mnozMjReal}</td>
+                            <td><Button variant="danger" onClick={() => deleteHistoryItem(x.id)}>Odstranit</Button></td>
+                        </tr >)}
+                </tbody>
+            </Table>
+            <hr />
+
             <h2>Sečtené položky</h2>
             <Table striped bordered hover>
                 <thead>
@@ -117,7 +157,7 @@ export default function InventuraDetailPage() {
                 </thead>
                 <tbody>
                     {addedEanItems.map(x =>
-                        <tr>
+                        <tr key={x.id}>
                             <td>{x.cenik.split(":")[1]}</td>
                             <td>{x.mnozMjReal}</td>
                         </tr >)}
@@ -131,8 +171,7 @@ export default function InventuraDetailPage() {
                 <Form.Control onChange={(e) => { setEan(e.target.value) }} />
             </Form.Group>
 
-            <Button onClick={sendEan}>Add</Button>
-            <br />
+            <Button onClick={sendEan} style={{ marginBottom: "1rem" }} >Add</Button>
 
             <Table striped bordered hover>
                 <thead>
