@@ -7,9 +7,10 @@ const sleep = (delay) => {
     })
 }
 
-axios.defaults.baseURL = process.env.REACT_APP_API_URL;
+axios.defaults.baseURL = "https://inventura.flexibee.eu/v2/c/";
 
 axios.interceptors.request.use(config => {
+    config.headers = { accept: 'application/json', "Authorization": `Basic YWRtaW4xOmFkbWluMWFkbWluMQ==` }
     return config;
 })
 

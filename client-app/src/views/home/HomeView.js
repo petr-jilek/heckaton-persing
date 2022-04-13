@@ -9,14 +9,14 @@ export default function HomeView() {
                 <Container>
                     <Navbar.Brand as={Link} to="/">Home</Navbar.Brand>
                     <Nav className="me-auto">
-                        <Nav.Link as={Link} to="/about">About</Nav.Link>
-                        <Nav.Link as={Link} to="/features">Features</Nav.Link>
-                        <Nav.Link as={Link} to="/pricing">Pricing</Nav.Link>
+                        <Nav.Link as={Link} to="/inventura">Inventury</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>
 
-            <Outlet />
+            <div className='HomeView_outled-div'>
+                <Outlet />
+            </div>
         </>
     );
 }

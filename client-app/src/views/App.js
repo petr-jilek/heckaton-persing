@@ -7,6 +7,8 @@ import AboutPage from './home/pages/AboutPage.js'
 import LoginPage from './other/LoginPage.js'
 import NotFoundView from './NotFoundView'
 import 'react-toastify/dist/ReactToastify.css';
+import InventuraPage from './home/pages/InventuraPage';
+import InventuraDetailPage from './home/pages/InventuraDetailPage.js';
 
 export default function App() {
     return (
@@ -15,7 +17,8 @@ export default function App() {
             <Routes>
                 <Route path="/" element={<HomeView />} >
                     <Route index element={<HomePage />} />
-                    <Route path="about" element={<AboutPage />} />
+                    <Route path="inventura" element={<InventuraPage />} />
+                    <Route path="inventura/:id" element={<InventuraDetailPage />} />
                 </Route>
 
                 <Route path="/login" element={<LoginPage />} />
