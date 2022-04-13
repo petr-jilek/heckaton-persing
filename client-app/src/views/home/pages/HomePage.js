@@ -19,9 +19,21 @@ export default function HomePage() {
     }
 
     const create = () => {
+        var data = {
+            winstrom: {
+                inventura: [
+                    {
+                        typInventury: name,
+                        sklad: storage,
+                        popisInventury: "Popis",
+                        datZahaj: "2022-04-20",
+                        stavK: "stavInventury.zahajena"
+                    }
+                ]
+            }
+        }
 
-        console.log(name)
-        console.log(storage)
+        axios.post("firma1/inventura/", data);
     };
 
     return (
