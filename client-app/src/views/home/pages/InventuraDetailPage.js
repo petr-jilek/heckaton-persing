@@ -10,7 +10,7 @@ export default function InventuraDetailPage() {
 
     const [item, setItem] = useState({})
 
-    const [ean, setEan] = useState({})
+    const [ean, setEan] = useState("")
 
     const [eanItems, setEanItems] = useState([])
 
@@ -91,6 +91,8 @@ export default function InventuraDetailPage() {
         else {
             toast.error("Žádný produkt pro tento EAN")
         }
+
+        setEan("")
     }
 
     const editCount = (val, cenik) => {
@@ -226,7 +228,7 @@ export default function InventuraDetailPage() {
             <h2>Načíst položky</h2>
             <Form.Group className="mb-3">
                 <Form.Label>EAN</Form.Label>
-                <Form.Control onChange={(e) => { setEan(e.target.value) }} onKeyDown={handleKeyDown} />
+                <Form.Control onChange={(e) => { setEan(e.target.value) }} value={ean} onKeyDown={handleKeyDown} />
             </Form.Group>
 
             <Button onClick={sendEan} style={{ marginBottom: "1rem" }} >Přidat</Button>
