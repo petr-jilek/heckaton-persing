@@ -16,6 +16,8 @@ export default function InventuraDetailPage() {
 
     const [addedEanItems, setAddedEanItems] = useState([])
 
+    const [souctovePolozky, setSouctovePolozky] = useState([])
+
     useEffect(() => {
         get()
     }, []);
@@ -26,6 +28,41 @@ export default function InventuraDetailPage() {
 
         var addedEans = await axios.get(`https://inventura.flexibee.eu/v2/c/firma1/inventura-polozka/%28inventura%3D${data.winstrom.inventura[0].id}%29?detail=custom%3Aid%2Csklad%2CdatZahaj%2CmnozMjReal%2Ccenik&limit=100&offset=0`)
         setAddedEanItems(addedEans.winstrom["inventura-polozka"])
+
+
+        var souctove = []
+
+        const uzje = (item) => {
+            for (var i = 0; i < souctove.length; i++) {
+                if (souctove[i].cenik === item.cenik) {
+                    return true
+                }
+            }
+            return false
+        }
+
+        const update = (item) => {
+            for (var i = 0; i < souctove.length; i++) {
+                if (souctove[i].cenik === item.cenik) {
+                    souctove[i].mnozMjReal += item.mnozMjReal
+                    return
+                }
+            }
+        }
+
+        for (var i = 0; i < addedEans.winstrom["inventura-polozka"].length; i++) {
+            if (uzje(addedEans.winstrom["inventura-polozka"][i])) {
+                update(addedEans.winstrom["inventura-polozka"][i])
+            }
+            else {
+                souctove.push({
+                    cenik: addedEans.winstrom["inventura-polozka"][i].cenik,
+                    mnozMjReal: addedEans.winstrom["inventura-polozka"][i].mnozMjReal
+                })
+            }
+        }
+
+        setSouctovePolozky(souctove)
     }
 
     const sendEan = async () => {
@@ -35,16 +72,16 @@ export default function InventuraDetailPage() {
 
         if (eItems.length > 0) {
             if (eanItems.filter(x => x.cenik === eItems[0].cenik).length > 0) {
-                toast.error("Item already in list")
+                toast.error("EAN již nahrán")
             }
             else {
                 eItems[0]["mycount"] = 1
                 setEanItems([...eanItems, eItems[0]])
-                toast.success("předmět přidán")
+                toast.success("Předmět přidán")
             }
         }
         else {
-            toast.error("Žádný předmět pro tento EAN")
+            toast.error("Žádný produkt pro tento EAN")
         }
     }
 
@@ -90,6 +127,8 @@ export default function InventuraDetailPage() {
         await axios.post("firma1/inventura-polozka", data)
 
         await get()
+
+        setEanItems([])
     }
 
     const deleteHistoryItem = async (id) => {
@@ -108,7 +147,7 @@ export default function InventuraDetailPage() {
 
         await axios.post("firma1/inventura-polozka", data)
 
-        toast.success("Item deleted")
+        toast.success("Položka odstraňena")
 
         await get()
     }
@@ -158,7 +197,7 @@ export default function InventuraDetailPage() {
                     </tr>
                 </thead>
                 <tbody>
-                    {addedEanItems.map(x =>
+                    {souctovePolozky.map(x =>
                         <tr key={x.id}>
                             <td>{x.cenik.split(":")[1]}</td>
                             <td>{x.mnozMjReal}</td>
@@ -176,7 +215,7 @@ export default function InventuraDetailPage() {
                 <Form.Control onChange={(e) => { setEan(e.target.value) }} />
             </Form.Group>
 
-            <Button onClick={sendEan} style={{ marginBottom: "1rem" }} >Add</Button>
+            <Button onClick={sendEan} style={{ marginBottom: "1rem" }} >Přidat</Button>
 
             <Table striped bordered hover>
                 <thead>
