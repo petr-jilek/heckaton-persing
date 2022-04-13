@@ -10,6 +10,7 @@ const sleep = (delay) => {
 axios.defaults.baseURL = "https://inventura.flexibee.eu/v2/c/";
 
 axios.interceptors.request.use(config => {
+    config.headers = { accept: 'application/json', "Authorization": `Basic YWRtaW4xOmFkbWluMWFkbWluMQ==` }
     return config;
 })
 
