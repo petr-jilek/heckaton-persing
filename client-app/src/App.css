@@ -6,6 +6,11 @@ p {
 
 .InvenuturaPage_items a {}
 
+
+.HomeViewPage_container_div {
+  padding: 1rem 2rem 1rem 2rem;
+}
+
 .HomeView_outled-div {
-  padding: 1rem 2rem;
+  text-align: center;
 }
