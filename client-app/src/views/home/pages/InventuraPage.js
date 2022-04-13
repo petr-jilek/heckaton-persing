@@ -17,7 +17,7 @@ export default function InventuraPage() {
 
     return (
         <>
-            <p>InventuraPage</p>
+            <h1>Inventury</h1>
             <></>
             <Button type="primary" onClick={get}>Get</Button>
             {items.map(x => (

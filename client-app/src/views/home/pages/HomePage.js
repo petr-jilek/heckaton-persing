@@ -1,10 +1,13 @@
-import { Button, Form, input } from 'react-bootstrap'
+import { Button, Form, DropdownButton, Dropdown } from 'react-bootstrap'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
 
 export default function HomePage() {
     const [items, setItems] = useState([])
+
+    const [name, setName] = useState("")
+    const [storage, setStorage] = useState(4)
 
     useEffect(() => {
         get();
@@ -15,36 +18,29 @@ export default function HomePage() {
         setItems(data.winstrom.sklad)
     }
 
+    const create = () => {
+
+        console.log(name)
+        console.log(storage)
+    };
+
     return (
         <>
-
-            {/*<p>HomePage</p>
-            <Button variant="primary" onClick={get}>Get</Button>
-           <Button variant="warning" onClick={tryGet}>Try</Button>*/}
-
             <Form.Group className="mb-3">
-                <Form.Label>Enteer your username</Form.Label>
-                <Form.Control placeholder="Input Name" />
-            </Form.Group>
-            <Form.Group className="mb-3">
-                <Form.Label>Enteer your password</Form.Label>
-                <Form.Control placeholder="Input Password" />
+                <Form.Label>Nazev</Form.Label>
+                <Form.Control onChange={(e) => { setName(e.target.value); console.log(e.target.value) }} />
             </Form.Group>
 
-            <Form.Label htmlFor="inputfirm_name">Enter name of storage</Form.Label>
-            {/* <Form.Control
-                type="storage_name"
-                id="inputstorage_name"
-            />*/}
-            <div></div>
-            <select id="storage_name" name="storage_name">
-                {items.map(x => <option key={x.id} value={x.nazev}>{x.nazev}</option>)}
-            </select>
+
+            <Form.Label htmlFor="inputfirm_name">Storage</Form.Label>
+
             <div>
-                <Button onclick="window.location.href='';">
-                    Continue
-                </Button>
+                <select id="lang" onChange={(e) => { setStorage(e.target.value) }}>
+                    {items.map(x => <option key={x.id} value={x.id}>{x.nazev}</option>)}
+                </select>
             </div>
+
+            <Button onClick={create}>Add</Button>
         </>
     );
 }
