@@ -5,3 +5,7 @@ p {
 .InvenuturaPage_items {}
 
 .InvenuturaPage_items a {}
+
+.HomeView_outled-div {
+  padding: 1rem 2rem;
+}

@@ -14,7 +14,9 @@ export default function HomeView() {
                 </Container>
             </Navbar>
 
-            <Outlet />
+            <div className='HomeView_outled-div'>
+                <Outlet />
+            </div>
         </>
     );
 }
